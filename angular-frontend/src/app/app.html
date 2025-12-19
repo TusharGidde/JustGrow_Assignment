@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-md bg-primary navbar-dark">
+  <div class="container-fluid">
+    <span class="navbar-brand">JustGrow</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <button class="btn btn-outline-light" (click)="logout()">
+      Logout
+    </button>
+  </div>
+</nav>
+<div class="mt-4 text-center">
+  <span class="text-center h4"><h1>Student Management Application </h1></span>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+<footer class="footer bg-primary text-center text-white mt-5 py-3 fixed-bottom">
+  <div>
+    <span class="text-muted">JustGrow Assignment &copy; 2025</span> 
+  </div>
+</footer>

@@ -1,0 +1,47 @@
+.modal.show {
+  display: block;
+  padding-right: 17px;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+table {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-sm {
+  margin-right: 0.25rem;
+}
+
+.pagination {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.page-link {
+  cursor: pointer;
+}
+
+.page-item.disabled .page-link {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-item.active .page-link {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+
+.text-muted {
+  font-size: 0.9rem;
+}
+

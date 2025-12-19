@@ -1,0 +1,24 @@
+.nav-link {
+  cursor: pointer !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  cursor: pointer !important;
+  color: #ffffff !important;
+}
+
+.nav-link.active {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.navbar-nav {
+  gap: 1rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
