@@ -16,9 +16,11 @@ export class StudentService {
 
   }
 
-  getStudentsList(): Observable<Student[]> {
-    // actual api call with auth header
-    return this.httpClient.get<Student[]>(`${this.BASE_URL}`, { headers: this.authService.getAuthHeaders() });
+  getStudentsList(page: number, size: number): Observable<any> {
+    return this.httpClient.get<any>(
+      `${this.BASE_URL}?page=${page}&size=${size}`,
+      { headers: this.authService.getAuthHeaders() }
+    );
   }
 
   createStudent(student: Student): Observable<Student> {

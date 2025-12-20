@@ -4,7 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.query.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.model.Student;
 import com.example.demo.repository.StudentRepository;
@@ -33,9 +36,21 @@ public class StudentController {
 	
 	//get all students rest API
 	@GetMapping("/students")
-	public List<Student> getAllStudents(){
-		return studentRepository.findAll();
-	}
+	public ResponseEntity<Map<String, Object>> getAllStudents(
+	            @RequestParam(defaultValue = "0") int page,
+	            @RequestParam(defaultValue = "5") int size) {
+
+	        Pageable pageable = PageRequest.of(page, size);
+	        org.springframework.data.domain.Page<Student> studentPage = studentRepository.findAll(pageable);
+
+	        Map<String, Object> response = new HashMap<>();
+	        response.put("students", studentPage.getContent());
+	        response.put("currentPage", studentPage.getNumber());
+	        response.put("totalItems", studentPage.getTotalElements());
+	        response.put("totalPages", studentPage.getTotalPages());
+
+	        return ResponseEntity.ok(response);
+	    }
 	
 	//create student REST API
 	@PostMapping("/students")
@@ -51,7 +66,7 @@ public class StudentController {
 			return ResponseEntity.ok(student);
 		}
 		
-		// update employee rest api
+		// update employee rest API
 		
 		@PutMapping("/students/{id}")
 		public ResponseEntity<Student> updateEmployee(@PathVariable("id") Long id, @RequestBody Student studentDetails){
